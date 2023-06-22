@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    /* Styles CSS pour la mise en page et le diaporama */
+
+    /* Styles pour la première page */
+    body {
+      background-color: rgb(115, 0, 255);
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #inscription {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 5px white; /* Ajout de l'ombre blanche autour du texte */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #555;
+    }
+
+    /* Styles pour la troisième page */
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    li {
+      margin: 0 10px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      background-color: #555;
+    }
+
+    /* Styles pour le diaporama */
+    #diaporama {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin-bottom: 40px; /* Ajoutez cette ligne pour augmenter la marge inférieure */
+    }
+
+    .swiper-container {
+      width: 80%;
+      height: 60%;
+    }
+
+    .swiper-slide {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .swiper-button-next {
+      right: 10px;
+    }
+
+    .swiper-button-prev {
+      left: 10px;
+    }
+
+    /* Styles pour le bouton "Accéder" */
+    .btn-acceder {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-acceder:hover {
+      background-color: #555;
+    }
+    .minus-btn,
+.plus-btn {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.minus-btn:hover,
+.plus-btn:hover {
+  background-color: #555;
+}
+.like-btn {
+  position: absolute;
+  top: 9px;
+  left: 15px;
+  background: url('twitter-heart.png');
+  width: 60px;
+  height: 60px;
+  background-size: 2900%;
+  background-repeat: no-repeat;
+}
+
+.is-active {
+  animation-name: animate;
+  animation-duration: 0.8s;
+  animation-iteration-count: 1;
+  animation-timing-function: steps(28);
+  animation-fill-mode: forwards;
+}
+
+@keyframes animate {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: right;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.quantity {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+
+    /* Styles pour le formulaire de contact */
+    #contact-form {
+      display: none;
+      margin: 0 auto;
+      width: 300px;
+    }
+
+    #contact-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #contact-form input[type="text"],
+    #contact-form textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    #contact-form input[type="submit"] {
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #contact-form input[type="submit"]:hover {
+      background-color: #555;
+    }
+
+    /* Styles pour la dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #555;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    #accueil img {
+  display: block;
+  margin: 0 auto;
+  width: 80%; /* Ajustez la largeur selon vos besoins */
+  max-height: 400px; /* Ajustez la hauteur maximale selon vos besoins */
+  border: 2px solid white; /* Ajoutez une bordure de 2px avec une couleur blanche */
+  border-radius: 10px; /* Ajoutez un arrondi aux coins de l'image */
+  transition: transform 0.3s; /* Ajoutez une transition pour l'effet de zoom */
+}
+
+#accueil img:hover {
+  transform: scale(1.1); /* Applique un zoom de 10% sur l'image au survol de la souris */
+}
+#menu-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 100px;
+  animation: slide-in 1s ease-in-out;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 400px) {
+  /* Modifier les styles pour les écrans de taille inférieure à 400px */
+  h1 {
+    font-size: 24px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Page d'inscription -->
+  <div id="inscription" style="display: block;">
+    <h1>Inscription</h1>
+    <form>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required><br><br>
+
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" required><br><br>
+
+      <label for="motdepasse">Mot de passe :</label>
+      <input type="password" id="motdepasse" name="motdepasse" required><br><br>
+
+      <input type="submit" value="S'inscrire">
+    </form>
+  </div>
+
+  <!-- Page de diaporama -->
+  <div id="diaporama" style="display: none;">
+    <h1><i>Our Most Famous Dishes:</i></h1>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image:url('./image1.webp');"></div>
+        <div class="swiper-slide" style="background-image:url('./image2.png');"></div>
+        <div class="swiper-slide" style="background-image:url('./image3.png');"></div>
+        <div class="swiper-slide" style="background-image:url('./image4.jpg');"></div>
+        <div class="swiper-slide" style="background-image:url('./image5.webp');"></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <button class="btn-acceder">Accéder</button>
+  </div>
+
+<!-- Page d'accueil -->
+<!-- Page d'accueil -->
+<div id="accueil" style="display: none;">
+    <nav>
+      <ul>
+        <li><a href="#" onclick="history.back()">Accueil</a></li>
+        <li><a href="#" onclick="showMenuPage()">Menu</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">À propos</a>
+          <div class="dropdown-content">
+            <a href="#">Notre histoire</a>
+            <a href="#">Notre équipe</a>
+            <a href="#">Nos valeurs</a>
+          </div>
+        </li>
+        <li><a href="#" id="contact-link">Contact</a></li>
+      </ul>
+    </nav>
+    <h1>Bienvenue au restaurant</h1>
+    <img src="https://img.freepik.com/vecteurs-libre/menu-du-restaurant-fruits-mer_52683-60256.jpg" alt="introuvable" id="accueil-img">
+    <!-- Ajoutez le contenu de la page d'accueil ici -->
+  </div>
+  
+    <!-- Ajoutez le contenu de la page d'accueil ici -->
+  </div>
+  
+ <!-- Nouvelle page de menu -->
+ <div id="menu-page" style="display: none;">
+    <header>
+        <h2 id="menu-title">--- Menu du Restaurant des Fruits de Mer ---
+
+        Entrées :
+        
+        1.Assiette de dégustation de fruits de mer (huîtres, crevettes, moules, palourdes) - Prix
+        2.Soupe de poisson maison accompagnée de croûtons aillés - Prix
+        3.Salade de crabe avec avocat, concombre et vinaigrette au citron - Prix
+        4.Carpaccio de saumon mariné aux agrumes, servi avec mesclun de salade - Prix
+        Plats principaux :
+        
+        1.Plateau de fruits de mer : assortiment de homard, crevettes, huîtres, crabes et moules - Prix
+        2.Brochette de gambas grillées, accompagnée de riz safrané et légumes de saison - Prix
+        3.Risotto aux fruits de mer (crevettes, calmars, moules) parfumé au safran - Prix
+        4.Filet de poisson frais du jour, sauce beurre blanc, purée de pommes de terre et légumes du marché - Prix
+        Options végétariennes :
+        
+        1.Assiette de légumes grillés accompagnée de quinoa et d'une sauce à la coriandre - Prix
+        2.Pâtes fraîches aux légumes de saison et pesto maison - Prix
+        Desserts :
+        
+        1.Tarte au citron meringuée, accompagnée de sorbet à la mangue - Prix
+        2.Fondant au chocolat noir, servi avec une boule de glace à la vanille - Prix
+        3.Crème brûlée à la vanille, servie avec des fruits rouges frais - Prix
+        4.Assortiment de sorbets artisanaux (citron, framboise, mangue) - Prix
+        Boissons :
+        
+        1.Sélection de vins blancs et rouges en provenance des meilleures vignobles locaux - Prix
+        2.Bières artisanales locales et internationales - Prix
+        3.Cocktails de fruits de mer spéciaux (ex. : Bloody Mary aux crevettes) - Prix
+        4.Boissons non alcoolisées, y compris des jus de fruits frais et des sodas - Prix
+        Veuillez noter que les prix mentionnés sont donnés à titre d'exemple et peuvent varier en fonction du restaurant. De plus, assurez-vous d'adapter le menu en fonction des saisons et de la disponibilité des produits.
+        
+        Ce menu détaillé offre une variété de choix pour satisfaire les amateurs de fruits de mer ainsi que ceux qui préfèrent des options végétariennes. Il est important de présenter les plats avec des descriptions alléchantes et d'utiliser des termes attrayants pour mettre en valeur les saveurs et la fraîcheur des fruits de mer.
+        
+        Bon appétit !</h2>
+      <!-- Modification de la balise <a> pour le lien du menu -->
+      
+      <a href="#" onclick="showAccueil()">Revenir</a>
+      <button class="like-btn" onclick="changeColor()">
+        <img src="./twitter-heart.png" alt="like-btn">
+      </button>
+    </header>
+    <!-- Ajoutez ici le contenu de la page de menu -->
+  </div>
+  <!-- Formulaire de contact -->
+  <div id="contact-form" style="display: none;">
+    <h1>RESERVEZ</h1>
+    <form>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required><br><br>
+  
+      <label for="email">Email :</label>
+      <input type="text" id="email" name="email" required><br><br>
+  
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="5" required></textarea><br><br>
+  
+      <input type="submit" value="Envoyer">
+    </form>
+    <h2>Nombre de personnes</h2>
+    <div>
+      <button class="minus-btn">-</button>
+      <span class="quantity">0</span>
+      <button class="plus-btn">+</button>
+    </div>
+  
+  
+  </div>
+
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var isDiaporamaVisible = false; // Variable pour suivre l'état du diaporama
+  
+    // Fonction pour afficher la nouvelle page de menu
+    function showMenuPage() {
+      document.getElementById("accueil").style.display = "none";
+      document.getElementById("menu-page").style.display = "block";
+    }
+  
+    function changeColor() {
+      var button = document.getElementById("like-button");
+      button.classList.toggle("clicked");
+    }
+  
+    function showAccueil() {
+      document.getElementById("menu-page").style.display = "none";
+      document.getElementById("accueil").style.display = "block";
+    }
+  
+    // Fonction pour revenir à la page d'accueil
+    function showAccueil() {
+      document.getElementById("menu-page").style.display = "none";
+      document.getElementById("accueil").style.display = "block";
+    }
+  
+    document.querySelector("#inscription form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      document.getElementById("inscription").style.display = "none";
+      document.getElementById("diaporama").style.display = "block";
+      isDiaporamaVisible = true; // Le diaporama est maintenant visible
+    });
+  
+    document.querySelector(".btn-acceder").addEventListener("click", function() {
+      if (isDiaporamaVisible) {
+        document.getElementById("diaporama").style.display = "none";
+        document.getElementById("accueil").style.display = "block";
+      }
+    });
+  
+    document.getElementById("contact-link").addEventListener("click", function() {
+      document.getElementById("accueil").style.display = "none";
+      document.getElementById("contact-form").style.display = "block";
+    });
+  
+    // Initialiser Swiper
+    var swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on: {
+        slideChangeTransitionEnd: function() {
+          if (this.activeIndex === 0 && !isDiaporamaVisible) {
+            // Le diaporama est revenu à la première slide et n'a pas encore été visité
+            isDiaporamaVisible = true;
+            document.getElementById("inscription").style.display = "none";
+            document.getElementById("diaporama").style.display = "block";
+          }
+        }
+      }
+    });
+  
+    var plusButtons = document.querySelectorAll(".plus-btn");
+  var minusButtons = document.querySelectorAll(".minus-btn");
+  var quantityInputs = document.querySelectorAll(".quantity");
+
+  plusButtons.forEach(function(button, index) {
+    button.addEventListener("click", function() {
+      var currentQuantity = parseInt(quantityInputs[index].textContent);
+      quantityInputs[index].textContent = currentQuantity + 1;
+      total(); // Mettre à jour la somme après l'augmentation de la quantité
+    });
+  });
+
+  minusButtons.forEach(function(button, index) {
+    button.addEventListener("click", function() {
+      var currentQuantity = parseInt(quantityInputs[index].textContent);
+      if (currentQuantity > 0) {
+        quantityInputs[index].textContent = currentQuantity - 1;
+        total(); // Mettre à jour la somme après la diminution de la quantité
+      }
+    });
+  });
+  var likeButtons = document.querySelectorAll(".like-btn");
+likeButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    this.classList.toggle("is-active");
+  });
+});
+  // Fonction pour calculer la somme
+  function total() {
+    var prices = document.querySelectorAll(".price");
+    var quantities = document.querySelectorAll(".quantity");
+    var sum = 0;
+
+    for (var i = 0; i < prices.length; i++) {
+      sum += parseFloat(prices[i].textContent) * parseInt(quantities[i].textContent);
+    }
+
+    document.getElementById("total").textContent = sum.toFixed(2);
+  }
+
+  // Appel initial à la fonction total() pour mettre à jour la somme au chargement de la page
+  total();
+
+  </script>
+  
+  </script>
+  <meta name="body" content="width=device-width, initial-scale=1.0">
+</body>
+</html>
