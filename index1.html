@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Page d'inscription -->
+  <div id="inscription">
+    <h1>Inscription</h1>
+    <form onsubmit="return validateForm()">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required><br><br>
+
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" required><br><br>
+
+      <label for="motdepasse">Mot de passe :</label>
+      <input type="password" id="motdepasse" name="motdepasse" required><br><br>
+
+      <input type="submit" value="S'inscrire">
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./animation.js"></script>
+  <script>
+    function validateForm() {
+      var nom = document.getElementById("nom").value;
+      var prenom = document.getElementById("prenom").value;
+
+      if (nom.trim() === "" || prenom.trim() === "") {
+        alert("Veuillez remplir tous les champs !");
+        return false; // Empêche la soumission du formulaire
+      }
+
+      // Redirection vers la deuxième page
+      window.location.href = "index2.html";
+    }
+  </script>
+  <meta name="body" content="width=device-width, initial-scale=1.0">
+</body>
+</html>

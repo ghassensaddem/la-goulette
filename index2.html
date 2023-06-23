@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Page de diaporama -->
+  <div id="diaporama">
+    <h1><i>Our Most Famous Dishes:</i></h1>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image:url('./image1.webp');"></div>
+        <div class="swiper-slide" style="background-image:url('./image2.png');"></div>
+        <div class="swiper-slide" style="background-image:url('./image3.png');"></div>
+        <div class="swiper-slide" style="background-image:url('./image4.jpg');"></div>
+        <div class="swiper-slide" style="background-image:url('./image5.webp');"></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <button class="btn-acceder">Accéder</button>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./animation.js"></script>
+  <script>
+    document.querySelector('.btn-acceder').addEventListener('click', function() {
+      window.location.href = "index3.html";
+    });
+        // Initialiser Swiper
+        var swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on: {
+        slideChangeTransitionEnd: function() {
+          if (this.activeIndex === 0 && !isDiaporamaVisible) {
+            // Le diaporama est revenu à la première slide et n'a pas encore été visité
+            isDiaporamaVisible = true;
+            document.getElementById("inscription").style.display = "none";
+            document.getElementById("diaporama").style.display = "block";
+          }
+        }
+      }
+    }); 
+  </script>
+</body>
+</html>
+

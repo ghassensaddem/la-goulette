@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Page d'accueil -->
+  <div id="accueil">
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showAccueil()">Accueil</a></li>
+        <li><a href="#" onclick="showMenuPage()">Menu</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">À propos</a>
+          <div class="dropdown-content">
+            <a href="#">Notre histoire</a>
+            <a href="#">Notre équipe</a>
+            <a href="#">Nos valeurs</a>
+          </div>
+        </li>
+        <li><a href="#" onclick="showContactForm()">Réservez</a></li>
+      </ul>
+    </nav>
+    <h1>Bienvenue au restaurant</h1>
+    <img src="https://img.freepik.com/vecteurs-libre/menu-du-restaurant-fruits-mer_52683-60256.jpg" alt="introuvable" id="accueil-img">
+    <!-- Ajoutez le contenu de la page d'accueil ici -->
+  </div>
+
+  <!-- Nouvelle page de menu -->
+  <div id="menu-page" style="display: none;">
+    <header>
+      <h2 id="menu-title">--- Menu du Restaurant des Fruits de Mer ---
+      
+      Entrées :
+      
+      1. Assiette de dégustation de fruits de mer (huîtres, crevettes, moules, palourdes) - Prix
+      2. Soupe de poisson maison accompagnée de croûtons aillés - Prix
+      3. Salade de crabe avec avocat, concombre et vinaigrette au citron - Prix
+      4. Carpaccio de saumon mariné aux agrumes, servi avec mesclun de salade - Prix
+      Plats principaux :
+      
+      1. Plateau de fruits de mer : assortiment de homard, crevettes, huîtres, crabes et moules - Prix
+      2. Brochette de gambas grillées, accompagnée de riz safrané et légumes de saison - Prix
+      3. Risotto aux fruits de mer (crevettes, calmars, moules) parfumé au safran - Prix
+      4. Filet de poisson frais du jour, sauce beurre blanc, purée de pommes de terre et légumes du marché - Prix
+      Options végétariennes :
+      
+      1. Assiette de légumes grillés accompagnée de quinoa et d'une sauce à la coriandre - Prix
+      2. Pâtes fraîches aux légumes de saison et pesto maison - Prix
+      Desserts :
+      
+      1. Tarte au citron meringuée, accompagnée de sorbet à la mangue - Prix
+      2. Fondant au chocolat noir, servi avec une boule de glace à la vanille - Prix
+      3. Crème brûlée à la vanille, servie avec des fruits rouges frais - Prix
+      4. Assortiment de sorbets artisanaux (citron, framboise, mangue) - Prix
+      Boissons :
+      
+      1. Sélection de vins blancs et rouges en provenance des meilleures vignobles locaux - Prix
+      2. Bières artisanales locales et internationales - Prix
+      3. Cocktails de fruits de mer spéciaux (ex. : Bloody Mary aux crevettes) - Prix
+      4. Boissons non alcoolisées, y compris des jus de fruits frais et des sodas - Prix
+      Veuillez noter que les prix mentionnés sont donnés à titre d'exemple et peuvent varier en fonction du restaurant. De plus, assurez-vous d'adapter le menu en fonction des saisons et de la disponibilité des produits.
+      
+      Ce menu détaillé offre une variété de choix pour satisfaire les amateurs de fruits de mer ainsi que ceux qui préfèrent des options végétariennes. Il est important de présenter les plats avec des descriptions alléchantes et d'utiliser des termes attrayants pour mettre en valeur les saveurs et la fraîcheur des fruits de mer.
+      
+      Bon appétit !</h2>
+    <!-- Modification de la balise <a> pour le lien du menu -->
+    <a href="#" onclick="showAccueil()">Revenir</a>
+    <button class="like-btn" onclick="changeColor()">
+      <img src="./twitter-heart.png" alt="like-btn">
+    </button>
+  </header>
+  <!-- Ajoutez ici le contenu de la page de menu -->
+</div>
+
+<!-- Formulaire de contact -->
+<div id="contact-form" style="display: none;">
+  <h1>RÉSERVEZ</h1>
+  <form>
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required><br><br>
+
+    <label for="email">Email :</label>
+    <input type="text" id="email" name="email" required><br><br>
+
+    <label for="message">Message :</label>
+    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+    <input type="submit" value="Envoyer">
+  </form>
+  <h2>Nombre de personnes</h2>
+  <div>
+    <button class="minus-btn">-</button>
+    <span class="quantity">0</span>
+    <button class="plus-btn">+</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="./animation.js"></script>
+<script>
+  // Fonction pour afficher la page d'accueil
+  function showAccueil() {
+    document.getElementById('accueil').style.display = 'block';
+    document.getElementById('menu-page').style.display = 'none';
+    document.getElementById('contact-form').style.display = 'none';
+  }
+
+  // Fonction pour afficher la page du menu
+  function showMenuPage() {
+    document.getElementById('accueil').style.display = 'none';
+    document.getElementById('menu-page').style.display = 'block';
+    document.getElementById('contact-form').style.display = 'none';
+  }
+
+  // Fonction pour afficher le formulaire de contact
+  function showContactForm() {
+    document.getElementById('accueil').style.display = 'none';
+    document.getElementById('menu-page').style.display = 'none';
+    document.getElementById('contact-form').style.display = 'block';
+  }
+
+  // Fonction pour augmenter ou diminuer la quantité de personnes
+  var quantity = 0;
+  var quantityElement = document.querySelector('.quantity');
+
+  function increaseQuantity() {
+    quantity++;
+    quantityElement.textContent = quantity;
+  }
+
+  function decreaseQuantity() {
+    if (quantity > 0) {
+      quantity--;
+      quantityElement.textContent = quantity;
+    }
+  }
+  var likeButtons = document.querySelectorAll(".like-btn");
+likeButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    this.classList.toggle("is-active");
+  });
+});
+
+  document.querySelector('.plus-btn').addEventListener('click', increaseQuantity);
+  document.querySelector('.minus-btn').addEventListener('click', decreaseQuantity);
+</script>
+</body>
+</html>
+
